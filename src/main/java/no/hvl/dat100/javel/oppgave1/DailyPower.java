@@ -1,27 +1,31 @@
 package no.hvl.dat100.javel.oppgave1;
-
 public class DailyPower {
 
     // a) print power prices during a day
     public static void printPowerPrices(double[] prices) {
 
-        // TODO
-
+        for (double price : prices) {
+            System.out.printf("%.2f NOK ", price);
+        }
+        System.out.println();
     }
 
     // b) print power usage during a day
     public static void printPowerUsage(double[] usage) {
 
-        // TODO
-
+        for (double usages : usage) {
+            System.out.printf("%.2f kWh ", usages);
+        }
+        System.out.println();
     }
 
     // c) compute power usage for a single day
     public static double computePowerUsage(double[] usage) {
 
         double sum = 0;
-
-        // TODO
+        for (double u : usage) {
+            sum += u;
+        }
 
         return sum;
     }
@@ -31,7 +35,10 @@ public class DailyPower {
 
         double price = 0;
 
-        // TODO
+
+        for (int i = 0; i < usage.length; i++) {
+            price += usage[i] * prices[i];
+        }
 
         return price;
     }
@@ -44,17 +51,23 @@ public class DailyPower {
 
         double support = 0;
 
-        // TODO
+        if (price > THRESHOLD) {
+            double overThreshold = price - THRESHOLD;
+            support = usage * overThreshold * PERCENTAGE;
+        }
 
         return support;
     }
+
 
     // f) compute power support for a single day
     public static double computePowerSupport(double[] usage, double[] prices) {
 
         double support = 0;
 
-        // TODO
+        for (int i = 0; i < usage.length; i++) {
+            support += getSupport(usage[i], prices[i]);
+        }
 
         return support;
     }
@@ -64,19 +77,26 @@ public class DailyPower {
     // g) compute norges pris for a single day
     public static double computeNorgesPrice(double[] usage) {
 
-        double price = 0;
+        double price = 0.50;
+        double totalUsage = 0.0;
 
-        // TODO
+        for (double hourUsage : usage) {
+            totalUsage += hourUsage;
+        }
 
-        return price;
+        return totalUsage * price;
     }
 
-    // g) compute peak usage during a single day
+    // h) compute peak usage during a single day
     public static double findPeakUsage(double[] usage) {
 
         double temp_max = 0;
 
-        // TODO
+        for (int i = 1; i < usage.length; i++) {
+            if (usage[i] > temp_max) {
+                temp_max = usage[i];
+            }
+        }
 
         return temp_max;
     }
@@ -85,8 +105,15 @@ public class DailyPower {
 
         double average = 0;
 
-        // TODO
-
+        if (usage == null || usage.length == 0) {
+            return 0;
+        }
+        double sum = 0;
+        for (double hourUsage : usage) {
+            sum += hourUsage;
+        }
+        average = sum / usage.length;
         return average;
     }
 }
+
