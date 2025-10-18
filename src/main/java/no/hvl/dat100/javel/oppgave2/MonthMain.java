@@ -9,7 +9,6 @@ public class MonthMain {
 
         // test data
         double[][] power_prices_month = MonthPowerData.powerprices_month;
-
         double[][] power_usage_month = MonthPowerData.powerusage_month;
 
         System.out.println("==============");
@@ -17,13 +16,24 @@ public class MonthMain {
         System.out.println("==============");
         System.out.println();
 
-        /*
-        TODO
+        System.out.println("Strømforbruk gjennom måneden:");
+        MonthlyPower.print_PowerUsage(power_usage_month);
+        System.out.println();
+        //b
+        System.out.println("Strømpriser gjennom måneden:");
+        MonthlyPower.print_PowerUsage(power_usage_month);
+        System.out.println();
+        //c
+        double sumUsage = MonthlyPower.computePowerUsage(power_usage_month);
+        System.out.printf("Totalt strømforbruk for måneden %.2f kWh%n", sumUsage);
+        double limit = 500.0;
+        boolean exceeded = MonthlyPower.exceedThreshold(power_usage_month, limit);
+        if (exceeded) {
+            System.out.println("Forbruktet har overskredet grensen på " + limit + " kwh!");
+        } else {
 
-         Write code that tests the methods you implement in the MonthlyPower class
-         Remember to teste the methods as you implement them
-         Remember to also to check that you get the expected results
-         */
-
+        }
     }
 }
+
+

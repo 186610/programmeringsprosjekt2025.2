@@ -6,15 +6,25 @@ public class MonthlyPower {
 
     // a) print power usage for a month
     public static void print_PowerUsage(double[][] usage) {
-
-        // TODO
-
+        for (int day = 0; day < usage.length; day++) {
+            System.out.print("Day " + (day + 1) + ": ");
+            for (double hourUsage : usage[day]) {
+                System.out.printf("%.2f kWh ", hourUsage);
+            }
+        }
+        System.out.println();
     }
 
     // b) print power prices for a month
     public static void print_PowerPrices(double[][] prices) {
 
-        // TODO
+        for (int day = 0; day < prices.length; day++) {
+            System.out.print("Day " + (day + 1) + ": ");
+            for (double hourPrice : prices[day]) {
+                System.out.printf("%.2f ", hourPrice);
+            }
+            System.out.println();
+        }
 
     }
 
@@ -23,7 +33,11 @@ public class MonthlyPower {
 
         double sum = 0;
 
-        // TODO
+        for (int day = 0; day < usage.length; day++) {
+            for (int hour = 0; hour < usage[day].length; hour++) {
+                 sum += usage[day][hour];
+            }
+        }
 
         return sum;
     }
@@ -31,10 +45,10 @@ public class MonthlyPower {
     // d) determine whether a given threshold in powerusage for the month has been exceeded
     public static boolean exceedThreshold(double[][] powerusage, double threshold) {
 
-        boolean exceeded = false;
-        double usage = 0;
+        double totalSum = computePowerUsage(powerusage);
+        boolean exceeded = totalSum > threshold;
 
-        // TODO
+
 
         return exceeded;
     }
