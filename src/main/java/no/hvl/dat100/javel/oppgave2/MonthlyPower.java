@@ -58,7 +58,11 @@ public class MonthlyPower {
 
         double price = 0;
 
-        // TODO
+        for (int day = 0; day < usage.length; day++) {
+            for (int hour = 0; hour < usage[day].length; hour++) {
+                price+=usage[day][hour] * prices[day][hour];
+            }
+        }
 
         return price;
     }
@@ -67,8 +71,20 @@ public class MonthlyPower {
     public static double computePowerSupport(double[][] usage, double[][] prices) {
 
         double support = 0;
+        double supportThreshold = 0.70;
+        double supportRate = 0.90;
 
-        // TODO
+        for (int day = 0; day < usage.length; day++) {
+        for (int hour = 0; hour < usage[day].length; hour++) {
+            double price = prices[day][hour];
+            double consumption = usage[day][hour];
+            if (price > supportThreshold) {
+                support += (price - supportThreshold) * supportRate * consumption;
+            }
+        }
+        }
+
+
 
         return support;
     }
@@ -76,9 +92,14 @@ public class MonthlyPower {
     // g) Norgesprice for the month
     public static double computeNorgesPrice(double[][] usage) {
 
+        double NorgesprisPerKwh = 0.70;
         double price = 0;
 
-        // TODO
+        for (double[] day : usage) {
+            for (double hourUsage : day) {
+                price += hourUsage * NorgesprisPerKwh;
+            }
+        }
 
         return price;
     }

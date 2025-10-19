@@ -31,7 +31,12 @@ public class MonthMain {
         if (exceeded) {
             System.out.println("Forbruktet har overskredet grensen på " + limit + " kwh!");
         } else {
-
+            double spotPrice = MonthlyPower.computeSpotPrice(power_usage_month, power_prices_month);
+            System.out.printf("Total spotpris for måneden: %.2f NOK%n", spotPrice);
+        double powerSupport = MonthlyPower.computePowerSupport(power_usage_month, power_prices_month);
+        System.out.printf("Strømstøtte for måneden %.2f NOK%n", powerSupport);
+        double norgespris = MonthlyPower.computeNorgesPrice(power_usage_month);
+        System.out.printf("Total Norgespris for måneden %.2f NOK%n", norgespris);
         }
     }
 }
