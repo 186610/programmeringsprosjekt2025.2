@@ -12,12 +12,27 @@ public class CustomersMain {
         System.out.println("==============");
         System.out.println();
 
-        /*
-        TODO
-
-         Write code that uses and tests the methods implemented in the Customers class
-
-        */
-
+        Customers registry = new Customers(5);
+        registry.addCustomer(new Customer("Alice Smith", "alice@example.com", 1001, PowerAgreementType.SPOTPRICE));
+        registry.addCustomer(new Customer("Bob Johnson", "bob@example.com", 1002, PowerAgreementType.NORGESPRICE));
+        registry.addCustomer(new Customer("Charlie Rose", "charlie@example.com", 1003, PowerAgreementType.POWERSUPPORT));
+        System.out.println("b) Antall registrerte kunder: " + registry.countNonNull());
+        System.out.println();
+        boolean added = registry.addCustomer(new Customer("Diana Prince", "diana@example.com", 1004, PowerAgreementType.NORGESPRICE));
+        System.out.println("d) addCustomer(Diana) -> " + added);
+        System.out.println("Antall registrerte kunder: " + registry.countNonNull());
+        System.out.println();
+        System.out.println("e) removeCustomer(1003):");
+        Customer removed = registry.removeCustomer(1003);
+        System.out.println(removed != null ? removed: "Ikke funnet");
+        System.out.println("Antall registrerte kunder: " + registry.countNonNull());
+        System.out.println();
+        System.out.println("f) Alle kunder i registeret:");
+        for (Customer c : registry.getCustomers()) {
+            if (c != null) {
+                System.out.println(c);
+                System.out.println();
+            }
+        }
     }
 }

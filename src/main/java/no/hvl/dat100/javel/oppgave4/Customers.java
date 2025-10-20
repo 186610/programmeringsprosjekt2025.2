@@ -8,9 +8,7 @@ public class Customers {
 
     // a) Complete constructor
     public Customers(int size) {
-
-        // TODO
-
+        customers = new Customer[size];
     }
 
     // b) count number of non-null references
@@ -19,8 +17,11 @@ public class Customers {
 
         int count = 0;
 
-        // TODO
-
+        for (Customer c : customers) {
+            if (c != null) {
+                count++;
+            }
+        }
         return count;
     }
 
@@ -30,39 +31,60 @@ public class Customers {
         boolean funnet = false;
         Customer c = null;
 
-        // TODO
+        int i = 0;
+        while (i < customers.length && !funnet) {
+            if (customers[i] != null && customers[i].getCustomer_id() == customer_id) {
+                c = customers[i];
+                funnet = true;
+            } else {
+                i++;
+            }
+        }
 
         return c;
     }
 
-    // d) add a customer to the reference table
-    public boolean addCustomer(Customer c) {
 
-        boolean inserted = false;
+        // d) add a customer to the reference table
+        public boolean addCustomer(Customer c) {
+            boolean inserted = false;
+            int i = 0;
 
-        // TODO
+            while (i < customers.length && !inserted) {
+                if (customers[i] == null) {
+                    customers[i] = c;
+                    inserted = true;
+                } else {
+                    i++;
+                }
+            }
 
-        return inserted;
+            return inserted;
+        }
+
+        // e) remove customer with given id from reference table
+        public Customer removeCustomer ( int customer_id){
+
+            boolean deleted = false;
+            Customer c = null;
+
+            int i = 0;
+            while (i < customers.length && !deleted) {
+                if (customers[i] != null && customers[i].getCustomer_id() == customer_id) {
+                    c = customers[i];
+                    customers[i] = null;
+                    deleted = true;
+                } else {
+                    i++;
+                }
+            }
+
+
+            return c;
+        }
+
+        // f) return reference table with all customers
+        public Customer[] getCustomers () {
+            return customers;
+        }
     }
-
-    // e) remove customer with given id from reference table
-    public Customer removeCustomer(int customer_id) {
-
-        boolean deleted = false;
-        Customer c = null;
-
-        // TODO
-
-        return c;
-    }
-
-    // f) return reference table with all customers
-    public Customer[] getCustomers() {
-
-        Customer[] customers = null;
-
-        // TODO
-
-        return customers;
-    }
-}
