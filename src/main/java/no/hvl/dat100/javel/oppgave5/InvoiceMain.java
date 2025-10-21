@@ -10,7 +10,7 @@ public class InvoiceMain {
         System.out.println("================");
         System.out.println("OPPGAVE 5");
         System.out.println("================\n");
-        
+
         double[][] prices = MonthPowerData.powerprices_month;
 
         double[][] usage1 = CustomerPowerUsageData.usage_month_customer1;
